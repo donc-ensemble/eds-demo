@@ -1,37 +1,74 @@
 .hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
+    max-width: unset;
+    padding: 0;
+    margin: 0;
 }
 
 .hero {
-  position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+    position: relative;
+    color: #ffff;
+}
+
+.hero .hero-brand-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #354757;
+    height: 70vw;
+    max-height: 750px;
 }
 
 .hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+    font-size: 24px;
+    margin: 0;
+    font-weight: 400;
+    margin-bottom: 8px;
 }
 
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+.hero .caption {
+    font-size: 14px;
 }
 
-.hero img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+.hero-video-container {
+    position: relative;
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
 }
 
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
-  }
+.hero-video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-height: 350px;
+}
+
+.hero-video-wrapper video {
+    width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+    .hero-wrapper .hero.block {
+        display: flex;
+    }
+    .hero .hero-brand-parent {
+        height: unset;
+        max-height: 40vw;
+    }
+    .hero .hero-brand-description .button-container.shop-button {
+        display: inline-flex;
+    }
+    .hero-video-container {
+        margin-left: unset;
+        transform: unset;
+        max-height: 40vw;
+    }
+}
+
+section.hero-container {
+    margin-bottom: 0 !important;
+    border: 1px solid red;
 }
