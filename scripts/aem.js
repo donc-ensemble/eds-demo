@@ -14,9 +14,7 @@
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
   const timeShift = () =>
-    window.performance
-      ? window.performance.now()
-      : Date.now() - window.hlx.rum.firstReadTime;
+    window.performance ? window.performance.now() : Date.now() - window.hlx.rum.firstReadTime;
   try {
     window.hlx = window.hlx || {};
     sampleRUM.enhance = () => {};
@@ -34,9 +32,7 @@ function sampleRUM(checkpoint, data) {
         weight,
         id,
         isSelected,
-        firstReadTime: window.performance
-          ? window.performance.timeOrigin
-          : Date.now(),
+        firstReadTime: window.performance ? window.performance.timeOrigin : Date.now(),
         sampleRUM,
         queue: [],
         collector: (...args) => window.hlx.rum.queue.push(args),
@@ -76,10 +72,8 @@ function sampleRUM(checkpoint, data) {
         });
 
         sampleRUM.baseURL =
-          sampleRUM.baseURL ||
-          new URL(window.RUM_BASE || '/', new URL('https://rum.hlx.page'));
-        sampleRUM.collectBaseURL =
-          sampleRUM.collectBaseURL || sampleRUM.baseURL;
+          sampleRUM.baseURL || new URL(window.RUM_BASE || '/', new URL('https://rum.hlx.page'));
+        sampleRUM.collectBaseURL = sampleRUM.collectBaseURL || sampleRUM.baseURL;
         sampleRUM.sendPing = (ck, time, pingData = {}) => {
           // eslint-disable-next-line max-len, object-curly-newline
           const rumData = JSON.stringify({
@@ -95,7 +89,7 @@ function sampleRUM(checkpoint, data) {
             : '';
           const { href: url, origin } = new URL(
             `.rum/${weight}${urlParams}`,
-            sampleRUM.collectBaseURL
+            sampleRUM.collectBaseURL,
           );
           const body =
             origin === window.location.origin
@@ -109,9 +103,10 @@ function sampleRUM(checkpoint, data) {
 
         sampleRUM.enhance = () => {
           // only enhance once
-          if (document.querySelector('script[src*="rum-enhancer"]')) return;
-          const { enhancerVersion, enhancerHash } =
-            sampleRUM.enhancerContext || {};
+          if (document.querySelector('script[src*="rum-enhancer"]')) {
+            return;
+          }
+          const { enhancerVersion, enhancerHash } = sampleRUM.enhancerContext || {};
           const script = document.createElement('script');
           if (enhancerHash) {
             script.integrity = enhancerHash;
@@ -119,7 +114,7 @@ function sampleRUM(checkpoint, data) {
           }
           script.src = new URL(
             `.rum/@adobe/helix-rum-enhancer@${enhancerVersion || '^2'}/src/index.js`,
-            sampleRUM.baseURL
+            sampleRUM.baseURL,
           ).href;
           document.head.appendChild(script);
         };
@@ -131,9 +126,7 @@ function sampleRUM(checkpoint, data) {
     if (window.hlx.rum && window.hlx.rum.isSelected && checkpoint) {
       window.hlx.rum.collector(checkpoint, data, timeShift());
     }
-    document.dispatchEvent(
-      new CustomEvent('rum', { detail: { checkpoint, data } })
-    );
+    document.dispatchEvent(new CustomEvent('rum', { detail: { checkpoint, data } }));
   } catch (error) {
     // something went awry
   }
@@ -147,15 +140,12 @@ function setup() {
   window.hlx.RUM_MASK_URL = 'full';
   window.hlx.RUM_MANUAL_ENHANCE = true;
   window.hlx.codeBasePath = '';
-  window.hlx.lighthouse =
-    new URLSearchParams(window.location.search).get('lighthouse') === 'on';
+  window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
   const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
   if (scriptEl) {
     try {
-      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split(
-        '/scripts/scripts.js'
-      );
+      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
@@ -232,7 +222,9 @@ function readBlockConfig(block) {
           } else {
             value = ps.map((p) => p.textContent);
           }
-        } else value = row.children[1].textContent;
+        } else {
+          value = row.children[1].textContent;
+        }
         config[name] = value;
       }
     }
@@ -310,10 +302,7 @@ function createOptimizedPicture(
   src,
   alt = '',
   eager = false,
-  breakpoints = [
-    { media: '(min-width: 600px)', width: '2000' },
-    { width: '750' },
-  ]
+  breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }],
 ) {
   const url = new URL(src, window.location.href);
   const picture = document.createElement('picture');
@@ -323,12 +312,11 @@ function createOptimizedPicture(
   // webp
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
-    if (br.media) source.setAttribute('media', br.media);
+    if (br.media) {
+      source.setAttribute('media', br.media);
+    }
     source.setAttribute('type', 'image/webp');
-    source.setAttribute(
-      'srcset',
-      `${pathname}?width=${br.width}&format=webply&optimize=medium`
-    );
+    source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
     picture.appendChild(source);
   });
 
@@ -336,21 +324,17 @@ function createOptimizedPicture(
   breakpoints.forEach((br, i) => {
     if (i < breakpoints.length - 1) {
       const source = document.createElement('source');
-      if (br.media) source.setAttribute('media', br.media);
-      source.setAttribute(
-        'srcset',
-        `${pathname}?width=${br.width}&format=${ext}&optimize=medium`
-      );
+      if (br.media) {
+        source.setAttribute('media', br.media);
+      }
+      source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
       picture.appendChild(source);
     } else {
       const img = document.createElement('img');
       img.setAttribute('loading', eager ? 'eager' : 'lazy');
       img.setAttribute('alt', alt);
       picture.appendChild(img);
-      img.setAttribute(
-        'src',
-        `${pathname}?width=${br.width}&format=${ext}&optimize=medium`
-      );
+      img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
     }
   });
 
@@ -367,9 +351,13 @@ function decorateTemplateAndTheme() {
     });
   };
   const template = getMetadata('template');
-  if (template) addClasses(document.body, template);
+  if (template) {
+    addClasses(document.body, template);
+  }
   const theme = getMetadata('theme');
-  if (theme) addClasses(document.body, theme);
+  if (theme) {
+    addClasses(document.body, theme);
+  }
 }
 
 /**
@@ -402,9 +390,7 @@ function wrapTextNodes(block) {
     if (blockColumn.hasChildNodes()) {
       const hasWrapper =
         !!blockColumn.firstElementChild &&
-        validWrappers.some(
-          (tagName) => blockColumn.firstElementChild.tagName === tagName
-        );
+        validWrappers.some((tagName) => blockColumn.firstElementChild.tagName === tagName);
       if (!hasWrapper) {
         wrap(blockColumn);
       } else if (
@@ -428,10 +414,7 @@ function decorateButtons(element) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
-        if (
-          up.childNodes.length === 1 &&
-          (up.tagName === 'P' || up.tagName === 'DIV')
-        ) {
+        if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
           a.className = 'button'; // default
           up.classList.add('button-container');
         }
@@ -501,7 +484,9 @@ function decorateSections(main) {
         const wrapper = document.createElement('div');
         wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
-        if (defaultContent) wrapper.classList.add('default-content-wrapper');
+        if (defaultContent) {
+          wrapper.classList.add('default-content-wrapper');
+        }
       }
       wrappers[wrappers.length - 1].append(e);
     });
@@ -608,9 +593,7 @@ async function loadBlock(block) {
     block.dataset.blockStatus = 'loading';
     const { blockName } = block.dataset;
     try {
-      const cssLoaded = loadCSS(
-        `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`
-      );
+      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`);
       const decorationComplete = new Promise((resolve) => {
         (async () => {
           try {
@@ -651,7 +634,9 @@ function decorateBlock(block) {
     const blockWrapper = block.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
-    if (section) section.classList.add(`${shortBlockName}-container`);
+    if (section) {
+      section.classList.add(`${shortBlockName}-container`);
+    }
   }
 }
 
@@ -718,7 +703,9 @@ async function loadSection(section, loadCallback) {
       // eslint-disable-next-line no-await-in-loop
       await loadBlock(blocks[i]);
     }
-    if (loadCallback) await loadCallback(section);
+    if (loadCallback) {
+      await loadCallback(section);
+    }
     section.dataset.sectionStatus = 'loaded';
     section.style.display = null;
   }

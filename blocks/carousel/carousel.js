@@ -63,8 +63,7 @@ function fillGaps(wrapper, originalItems) {
   if (itemsToFill > 0 && itemsToFill < visibleItems) {
     for (let i = 0; i < itemsToFill; i++) {
       const borrowIndex = totalItems - visibleItems + i;
-      const borrowedItem =
-        wrapper.children[borrowIndex % totalItems].cloneNode(true);
+      const borrowedItem = wrapper.children[borrowIndex % totalItems].cloneNode(true);
       wrapper.appendChild(borrowedItem);
     }
   }
@@ -112,7 +111,9 @@ function moveCarousel(direction) {
 }
 
 function transformCarousel(block) {
-  if (!block) return;
+  if (!block) {
+    return;
+  }
 
   const originalCarousel = block;
   const newContainer = createContainer();

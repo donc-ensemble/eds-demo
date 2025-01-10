@@ -30,9 +30,7 @@ export default async function decorate(block) {
   chairSection.appendChild(chairDiv.querySelector('picture').cloneNode(true));
 
   container.appendChild(sherpaSection);
-  const shopButton = container.querySelector(
-    '.sherpa-section .sherpa-content .button-container'
-  );
+  const shopButton = container.querySelector('.sherpa-section .sherpa-content .button-container');
   shopButton.classList.add('shop-button');
   container.appendChild(chairSection);
 

@@ -11,7 +11,9 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+  while (fragment.firstElementChild) {
+    nav.append(fragment.firstElementChild);
+  }
   nav.children[0].classList.add('row-brand');
 
   nav.children[1].classList.add('nav-middle');
