@@ -1,7 +1,6 @@
 .shipping-wrapper {
   padding: 0 !important ;
   margin: 0 !important;
-  /* min-width: 100%; */
 }
 
 .shipping > div:first-child picture img {
@@ -20,13 +19,13 @@
   padding: 25px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (width<= 768px) {
   .shipping > div:last-child h2 {
     font-size: 30px;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (width<= 1024px) {
   .shipping-wrapper {
     max-width: none !important;
     width: 100vw !important;
@@ -47,10 +46,8 @@
     background-size: cover;
     background-position: center;
     height: 300px;
-
     margin: 0 auto;
     padding: 0 20px;
-
     display: flex;
     text-align: left;
     align-items: center;

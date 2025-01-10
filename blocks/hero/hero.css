@@ -50,17 +50,20 @@
   width: 100%;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (width<= 1024px) {
   .hero-wrapper .hero.block {
     display: flex;
   }
+
   .hero .hero-brand-parent {
     height: unset;
     max-height: 40vw;
   }
+
   .hero .hero-brand-description .button-container.shop-button {
     display: inline-flex;
   }
+
   .hero-video-container {
     margin-left: unset;
     transform: unset;

@@ -46,7 +46,7 @@
   border: 1px solid #484745;
 }
 
-@media screen and (min-width: 574px) {
+@media screen and (width>= 574px) {
   .card-wrapper .learn {
     flex-direction: row;
     gap: 2rem;

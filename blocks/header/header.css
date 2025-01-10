@@ -25,18 +25,7 @@ nav .icon-coleman {
   cursor: pointer;
 }
 
-nav .burger-menu .bar1,
-nav .burger-menu .bar2,
-nav .burger-menu .bar3 {
-  width: 25px;
-  height: 2px;
-  background-color: black;
-  margin: 4px 0;
-  transition: 0.4s;
-}
-
 .change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-1px, 6px);
   transform: rotate(-45deg) translate(-1px, 6px);
 }
 
@@ -45,8 +34,17 @@ nav .burger-menu .bar3 {
 }
 
 .change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-2px, -5px);
   transform: rotate(45deg) translate(-2px, -8px);
+}
+
+nav .burger-menu .bar1,
+nav .burger-menu .bar2,
+nav .burger-menu .bar3 {
+  width: 25px;
+  height: 2px;
+  background-color: black;
+  margin: 4px 0;
+  transition: 0.4s;
 }
 
 .nav-wrapper {
@@ -92,7 +90,6 @@ nav .burger-menu .bar3 {
   border-bottom-left-radius: 0.25rem;
   border-top-left-radius: 0.25rem;
   border-right: 0;
-
   outline: none;
 }
 
@@ -124,7 +121,6 @@ form.search-form {
   border-radius: 0 2px 2px 0;
   padding: 0.5rem 1rem;
   cursor: pointer;
-
   border-bottom-right-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
@@ -140,9 +136,10 @@ form.search-form {
 nav #main-menu {
   padding: 12px;
   text-align: center;
-  border-bottom: 1px solid #222222;
+  border-bottom: 1px solid #222;
   margin: 0;
 }
+
 nav .main-menu ul {
   padding: 0;
   margin: 0;
@@ -151,13 +148,12 @@ nav .main-menu ul {
 nav .main-menu ul li {
   padding: 0.5rem 0;
   padding-left: 1rem;
-  border-bottom: 1px solid #222222;
-
+  border-bottom: 1px solid #222;
   font-size: 1rem;
   cursor: pointer;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (width<= 1024px) {
   .nav-wrapper .main-menu .default-content-wrapper {
     position: relative;
     left: 0;
@@ -179,7 +175,6 @@ nav .main-menu ul li {
     border: none;
     text-align: center;
     padding: 0.5rem;
-
     font-size: 14px;
   }
 

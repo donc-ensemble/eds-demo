@@ -23,19 +23,19 @@
   min-width: 0;
 }
 
-@media (max-width: 767px) {
+@media (width<= 767px) {
   .carousel-item {
     flex: 0 0 calc(40% - 10px);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (width>= 768px) and (width<= 1279px) {
   .carousel-item {
     flex: 0 0 calc(25% - 15px);
   }
 }
 
-@media (min-width: 1280px) {
+@media (width>= 1280px) {
   .carousel-item {
     flex: 0 0 calc(16.666% - 17px);
   }
@@ -63,7 +63,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: color(rgba 0 0 0 50%);
   color: white;
   border: none;
   padding: 15px;
@@ -79,7 +79,7 @@
 }
 
 .carousel-button:hover {
-  background: rgba(0, 0, 0, 0.7);
+  background: color(rgba 0 0 0 70%);
 }
 
 .carousel-button.prev {

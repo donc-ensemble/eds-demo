@@ -14,7 +14,7 @@
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
   const timeShift = () =>
-    window.performance ? window.performance.now() : Date.now() - window.hlx.rum.firstReadTime;
+    (window.performance ? window.performance.now() : Date.now() - window.hlx.rum.firstReadTime);
   try {
     window.hlx = window.hlx || {};
     sampleRUM.enhance = () => {};
@@ -84,17 +84,17 @@ function sampleRUM(checkpoint, data) {
             t: time,
             ...pingData,
           });
-          const urlParams = window.RUM_PARAMS
-            ? `?${new URLSearchParams(window.RUM_PARAMS).toString()}`
-            : '';
+          const urlParams = window.RUM_PARAMS ?
+            `?${new URLSearchParams(window.RUM_PARAMS).toString()}` :
+            '';
           const { href: url, origin } = new URL(
             `.rum/${weight}${urlParams}`,
             sampleRUM.collectBaseURL,
           );
           const body =
-            origin === window.location.origin
-              ? new Blob([rumData], { type: 'application/json' })
-              : rumData;
+            origin === window.location.origin ?
+              new Blob([rumData], { type: 'application/json' }) :
+              rumData;
           navigator.sendBeacon(url, body);
           // eslint-disable-next-line no-console
           console.debug(`ping:${ck}`, pingData);
@@ -168,13 +168,13 @@ function init() {
  * @returns {string} The class name
  */
 function toClassName(name) {
-  return typeof name === 'string'
-    ? name
-        .toLowerCase()
-        .replace(/[^0-9a-z]/gi, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '')
-    : '';
+  return typeof name === 'string' ?
+    name
+      .toLowerCase()
+      .replace(/[^0-9a-z]/gi, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '') :
+    '';
 }
 
 /**
