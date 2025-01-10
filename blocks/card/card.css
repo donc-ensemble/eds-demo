@@ -1,0 +1,54 @@
+.card-container {
+    margin: 0;
+    background-color: #f0eae1 !important;
+    padding: 2rem !important;
+    display: flex;
+    justify-content: center;
+}
+
+.card-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.card-wrapper .learn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+}
+
+.card-wrapper .learn > div {
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.card-wrapper .learn > div h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.card-wrapper .learn > div h3 + p {
+    font-size: 0.875rem;
+}
+
+.card-wrapper .learn > div img:hover {
+    box-shadow: 0 0 5px 3px #828483;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease;
+}
+.button-container.shop-button.learn-btn {
+    display: inline-flex;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid #484745;
+}
+
+@media screen and (min-width: 574px) {
+    .card-wrapper .learn {
+        flex-direction: row;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+}
