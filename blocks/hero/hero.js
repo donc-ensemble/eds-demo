@@ -1,19 +1,19 @@
 export default async function decorate(block) {
-  const button = block.querySelector(".hero.block .button-container");
-  const caption = block.querySelector(".hero.block p");
-  caption.classList.add("caption");
-  button.classList.add("shop-button");
+  const button = block.querySelector('.hero.block .button-container');
+  const caption = block.querySelector('.hero.block p');
+  caption.classList.add('caption');
+  button.classList.add('shop-button');
 
   const heroParent = block.children[0];
-  heroParent.classList.add("hero-brand-parent");
+  heroParent.classList.add('hero-brand-parent');
   const heroChild = heroParent.children[0];
-  heroChild.classList.add("hero-brand-description");
-  const heroVideo = document.createElement("div");
+  heroChild.classList.add('hero-brand-description');
+  const heroVideo = document.createElement('div');
   block.append(heroVideo);
-  heroVideo.classList.add("hero-video-container");
+  heroVideo.classList.add('hero-video-container');
 
-  const heroVideoWrapper = document.createElement("div");
-  heroVideoWrapper.classList.add("hero-video-wrapper");
+  const heroVideoWrapper = document.createElement('div');
+  heroVideoWrapper.classList.add('hero-video-wrapper');
   heroVideoWrapper.innerHTML = `
   <video 
     id="hero-video"

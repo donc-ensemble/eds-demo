@@ -3,51 +3,51 @@ function getVisibleItems() {
 
   if (windowWidth >= 1280) {
     return 6;
-  } else if (windowWidth >= 768) {
-    return 4;
-  } else {
-    return 2.5;
   }
+  if (windowWidth >= 768) {
+    return 4;
+  }
+  return 2.5;
 }
 
 function createContainer() {
-  const container = document.createElement("div");
-  container.className = "carousel-container-block";
+  const container = document.createElement('div');
+  container.className = 'carousel-container-block';
   return container;
 }
 
 function createWrapper() {
-  const wrapper = document.createElement("div");
-  wrapper.className = "carousel-wrapper-block";
+  const wrapper = document.createElement('div');
+  wrapper.className = 'carousel-wrapper-block';
   return wrapper;
 }
 
-function createNavigationButtons() {
-  const prevButton = createButton("prev", "←", moveCarousel.bind(null, -1));
-  const nextButton = createButton("next", "→", moveCarousel.bind(null, 1));
-  return [prevButton, nextButton];
-}
-
 function createButton(className, text, onClick) {
-  const button = document.createElement("button");
+  const button = document.createElement('button');
   button.className = `carousel-button ${className}`;
   button.onclick = onClick;
   button.textContent = text;
   return button;
 }
 
-function createCarouselItem(item) {
-  const newItem = document.createElement("div");
-  newItem.className = "carousel-item";
+function createNavigationButtons() {
+  const prevButton = createButton('prev', '←', moveCarousel.bind(null, -1));
+  const nextButton = createButton('next', '→', moveCarousel.bind(null, 1));
+  return [prevButton, nextButton];
+}
 
-  const picture = item.querySelector("picture");
+function createCarouselItem(item) {
+  const newItem = document.createElement('div');
+  newItem.className = 'carousel-item';
+
+  const picture = item.querySelector('picture');
   if (picture) {
     newItem.appendChild(picture.cloneNode(true));
   }
 
-  const text = item.querySelector("p");
+  const text = item.querySelector('p');
   if (text) {
-    const p = document.createElement("p");
+    const p = document.createElement('p');
     p.textContent = text.textContent;
     newItem.appendChild(p);
   }
@@ -71,35 +71,35 @@ function fillGaps(wrapper, originalItems) {
 }
 
 function getTotalGroups() {
-  const items = document.querySelectorAll(".carousel-item");
+  const items = document.querySelectorAll('.carousel-item');
   const visibleItems = getVisibleItems();
   const totalItems = items.length;
 
   return Math.ceil(totalItems / visibleItems) - 1;
 }
 
+let currentGroup = 0;
+
 function updateButtonState() {
   const totalGroups = getTotalGroups();
-  const prevButton = document.querySelector(".carousel-button.prev");
-  const nextButton = document.querySelector(".carousel-button.next");
+  const prevButton = document.querySelector('.carousel-button.prev');
+  const nextButton = document.querySelector('.carousel-button.next');
 
   if (prevButton && nextButton) {
     prevButton.disabled = currentGroup <= 0;
     nextButton.disabled = currentGroup >= totalGroups;
 
-    const items = document.querySelectorAll(".carousel-item");
+    const items = document.querySelectorAll('.carousel-item');
     const visibleItems = getVisibleItems();
     const shouldShowButtons = items.length > visibleItems;
 
-    prevButton.style.display = shouldShowButtons ? "flex" : "none";
-    nextButton.style.display = shouldShowButtons ? "flex" : "none";
+    prevButton.style.display = shouldShowButtons ? 'flex' : 'none';
+    nextButton.style.display = shouldShowButtons ? 'flex' : 'none';
   }
 }
 
-let currentGroup = 0;
-
 function moveCarousel(direction) {
-  const wrapper = document.querySelector(".carousel-wrapper-block");
+  const wrapper = document.querySelector('.carousel-wrapper-block');
   const totalGroups = getTotalGroups();
 
   currentGroup = Math.max(0, Math.min(totalGroups, currentGroup + direction));
@@ -109,20 +109,6 @@ function moveCarousel(direction) {
   wrapper.style.transform = `translateX(${translateX}%)`;
 
   updateButtonState();
-}
-
-export default function decorate(block) {
-  transformCarousel(block);
-  updateButtonState();
-
-  window.addEventListener("resize", () => {
-    currentGroup = 0;
-    const wrapper = document.querySelector(".carousel-wrapper-block");
-    if (wrapper) {
-      wrapper.style.transform = "translateX(0)";
-    }
-    updateButtonState();
-  });
 }
 
 function transformCarousel(block) {
@@ -145,4 +131,18 @@ function transformCarousel(block) {
   newContainer.appendChild(nextButton);
 
   originalCarousel.parentNode.replaceChild(newContainer, originalCarousel);
+}
+
+export default function decorate(block) {
+  transformCarousel(block);
+  updateButtonState();
+
+  window.addEventListener('resize', () => {
+    currentGroup = 0;
+    const wrapper = document.querySelector('.carousel-wrapper-block');
+    if (wrapper) {
+      wrapper.style.transform = 'translateX(0)';
+    }
+    updateButtonState();
+  });
 }
