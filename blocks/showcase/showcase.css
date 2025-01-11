@@ -58,7 +58,7 @@
   object-fit: cover;
 }
 
-@media (width<= 992px) {
+@media (width>= 992px) {
   .showcase-container {
     flex-direction: row;
   }
