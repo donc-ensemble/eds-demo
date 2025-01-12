@@ -17,6 +17,7 @@
   background-color: #354757;
   height: 70vw;
   max-height: 750px;
+  padding: 2rem;
 }
 
 .hero h1 {
@@ -50,7 +51,7 @@
   width: 100%;
 }
 
-@media screen and (width<= 1024px) {
+@media screen and (width>= 1024px) {
   .hero-wrapper .hero.block {
     display: flex;
   }
@@ -58,6 +59,7 @@
   .hero .hero-brand-parent {
     height: unset;
     max-height: 40vw;
+    padding: 2rem;
   }
 
   .hero .hero-brand-description .button-container.shop-button {
@@ -71,7 +73,4 @@
   }
 }
 
-section.hero-container {
-  margin-bottom: 0 !important;
-  border: 1px solid red;
-}
+

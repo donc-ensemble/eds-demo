@@ -1,10 +1,12 @@
 export default async function decorate(block) {
   const button = block.querySelector('.hero.block .button-container');
   const caption = block.querySelector('.hero.block p');
+  
   caption.classList.add('caption');
   button.classList.add('shop-button');
 
   const heroParent = block.children[0];
+  console.log(heroParent)
   heroParent.classList.add('hero-brand-parent');
   const heroChild = heroParent.children[0];
   heroChild.classList.add('hero-brand-description');

@@ -19,13 +19,13 @@
   padding: 25px;
 }
 
-@media screen and (width<= 768px) {
+@media screen and (width>= 768px) {
   .shipping > div:last-child h2 {
     font-size: 30px;
   }
 }
 
-@media screen and (width<= 1024px) {
+@media screen and (width>= 1024px) {
   .shipping-wrapper {
     max-width: none !important;
     width: 100vw !important;

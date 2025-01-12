@@ -86,7 +86,7 @@ nav .burger-menu .bar3 {
 .nav-search form input {
   font-size: 1rem;
   width: 100%;
-  padding: 6px 80px 6px 12px;
+  padding: 6px 12px 6px 12px;
   border-bottom-left-radius: 0.25rem;
   border-top-left-radius: 0.25rem;
   border-right: 0;
@@ -153,7 +153,7 @@ nav .main-menu ul li {
   cursor: pointer;
 }
 
-@media screen and (width<= 1024px) {
+@media screen and (width>= 1024px) {
   .nav-wrapper .main-menu .default-content-wrapper {
     position: relative;
     left: 0;

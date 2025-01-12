@@ -20,12 +20,20 @@ import {
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const p = main.querySelector('p');
-  console.log(p)
+  const btn = main.querySelector('.button-container')
   // eslint-disable-next-line no-bitwise
-  if (h1 && p && h1.compareDocumentPosition(p) & Node.DOCUMENT_POSITION_PRECEDING) {
+  if (h1 && p && h1.compareDocumentPosition(p) & Node.DOCUMENT_POSITION_FOLLOWING) {
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [h1, p] }));
     main.prepend(section);
+    
+    // Get the paragraph element inside the hero block
+    const heroParagraph = section.querySelector('.hero p');
+    
+    // If both paragraph and button exist, insert button after paragraph
+    if (heroParagraph && btn) {
+      heroParagraph.after(btn);
+    }
   }
 }
 
@@ -68,6 +76,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+
 }
 
 /**
