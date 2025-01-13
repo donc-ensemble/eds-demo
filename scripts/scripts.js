@@ -19,12 +19,21 @@ import {
  */
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
+  const p = main.querySelector('p');
+  const btn = main.querySelector('.button-container')
   // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+  if (h1 && p && h1.compareDocumentPosition(p) & Node.DOCUMENT_POSITION_FOLLOWING) {
     const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
+    section.append(buildBlock('hero', { elems: [h1, p] }));
     main.prepend(section);
+    
+    // Get the paragraph element inside the hero block
+    const heroParagraph = section.querySelector('.hero p');
+    
+    // If both paragraph and button exist, insert button after paragraph
+    if (heroParagraph && btn) {
+      heroParagraph.after(btn);
+    }
   }
 }
 
@@ -34,7 +43,9 @@ function buildHeroBlock(main) {
 async function loadFonts() {
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
-    if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+    if (!window.location.hostname.includes('localhost')) {
+      sessionStorage.setItem('fonts-loaded', 'true');
+    }
   } catch (e) {
     // do nothing
   }
@@ -65,6 +76,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+
 }
 
 /**
@@ -101,7 +113,9 @@ async function loadLazy(doc) {
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
-  if (hash && element) element.scrollIntoView();
+  if (hash && element) {
+    element.scrollIntoView();
+  }
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));

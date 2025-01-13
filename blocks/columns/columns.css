@@ -11,6 +11,10 @@
   order: 1;
 }
 
+.columns {
+  background-color: aquamarine;
+}
+
 .columns > div > .columns-img-col {
   order: 0;
 }

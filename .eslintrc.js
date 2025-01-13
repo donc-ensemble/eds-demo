@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: 'airbnb-base',
+  extends: ['airbnb-base', 'prettier'],
   env: {
     browser: true,
   },
@@ -11,8 +11,21 @@ module.exports = {
     requireConfigFile: false,
   },
   rules: {
-    'import/extensions': ['error', { js: 'always' }], // require js file extensions in imports
-    'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
-    'no-param-reassign': [2, { props: false }], // allow modifying properties of param
+    'import/extensions': ['error', { js: 'always' }],
+    'linebreak-style': ['error', 'unix'],
+    'no-param-reassign': [2, { props: false }],
+    quotes: ['error', 'single'],
+    'no-use-before-define': ['error', { functions: false }],
+    'no-plusplus': 'off',
+    'operator-linebreak': ['error', 'after', { overrides: { '?': 'after', ':': 'after' } }],
+    'comma-dangle': ['error', 'always-multiline'],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-empty-function': ['error', { allow: ['arrowFunctions'] }],
+    'no-confusing-arrow': ['error', { allowParens: true }],
+    'implicit-arrow-linebreak': 'off',
+    'nonblock-statement-body-position': 'off',
+    curly: ['error', 'all'],
+    'no-bitwise': 'off',
+    indent: ['error', 2],
   },
 };

@@ -13,16 +13,18 @@
 /* eslint-env browser */
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
-  const timeShift = () => (window.performance ? window.performance.now() : Date.now() - window.hlx.rum.firstReadTime);
+  const timeShift = () =>
+    window.performance ? window.performance.now() : Date.now() - window.hlx.rum.firstReadTime;
   try {
     window.hlx = window.hlx || {};
     sampleRUM.enhance = () => {};
     if (!window.hlx.rum) {
       const param = new URLSearchParams(window.location.search).get('rum');
-      const weight = (window.SAMPLE_PAGEVIEWS_AT_RATE === 'high' && 10)
-        || (window.SAMPLE_PAGEVIEWS_AT_RATE === 'low' && 1000)
-        || (param === 'on' && 1)
-        || 100;
+      const weight =
+        (window.SAMPLE_PAGEVIEWS_AT_RATE === 'high' && 10) ||
+        (window.SAMPLE_PAGEVIEWS_AT_RATE === 'low' && 1000) ||
+        (param === 'on' && 1) ||
+        100;
       const id = Math.random().toString(36).slice(-4);
       const isSelected = param !== 'off' && Math.random() * weight < 1;
       // eslint-disable-next-line object-curly-newline, max-len
@@ -69,7 +71,8 @@ function sampleRUM(checkpoint, data) {
           sampleRUM('error', errData);
         });
 
-        sampleRUM.baseURL = sampleRUM.baseURL || new URL(window.RUM_BASE || '/', new URL('https://rum.hlx.page'));
+        sampleRUM.baseURL =
+          sampleRUM.baseURL || new URL(window.RUM_BASE || '/', new URL('https://rum.hlx.page'));
         sampleRUM.collectBaseURL = sampleRUM.collectBaseURL || sampleRUM.baseURL;
         sampleRUM.sendPing = (ck, time, pingData = {}) => {
           // eslint-disable-next-line max-len, object-curly-newline
@@ -88,9 +91,10 @@ function sampleRUM(checkpoint, data) {
             `.rum/${weight}${urlParams}`,
             sampleRUM.collectBaseURL,
           );
-          const body = origin === window.location.origin
-            ? new Blob([rumData], { type: 'application/json' })
-            : rumData;
+          const body =
+            origin === window.location.origin
+              ? new Blob([rumData], { type: 'application/json' })
+              : rumData;
           navigator.sendBeacon(url, body);
           // eslint-disable-next-line no-console
           console.debug(`ping:${ck}`, pingData);
@@ -99,7 +103,9 @@ function sampleRUM(checkpoint, data) {
 
         sampleRUM.enhance = () => {
           // only enhance once
-          if (document.querySelector('script[src*="rum-enhancer"]')) return;
+          if (document.querySelector('script[src*="rum-enhancer"]')) {
+            return;
+          }
           const { enhancerVersion, enhancerHash } = sampleRUM.enhancerContext || {};
           const script = document.createElement('script');
           if (enhancerHash) {
@@ -164,10 +170,10 @@ function init() {
 function toClassName(name) {
   return typeof name === 'string'
     ? name
-      .toLowerCase()
-      .replace(/[^0-9a-z]/gi, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '')
+        .toLowerCase()
+        .replace(/[^0-9a-z]/gi, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '')
     : '';
 }
 
@@ -216,7 +222,9 @@ function readBlockConfig(block) {
           } else {
             value = ps.map((p) => p.textContent);
           }
-        } else value = row.children[1].textContent;
+        } else {
+          value = row.children[1].textContent;
+        }
         config[name] = value;
       }
     }
@@ -304,7 +312,9 @@ function createOptimizedPicture(
   // webp
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
-    if (br.media) source.setAttribute('media', br.media);
+    if (br.media) {
+      source.setAttribute('media', br.media);
+    }
     source.setAttribute('type', 'image/webp');
     source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
     picture.appendChild(source);
@@ -314,7 +324,9 @@ function createOptimizedPicture(
   breakpoints.forEach((br, i) => {
     if (i < breakpoints.length - 1) {
       const source = document.createElement('source');
-      if (br.media) source.setAttribute('media', br.media);
+      if (br.media) {
+        source.setAttribute('media', br.media);
+      }
       source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
       picture.appendChild(source);
     } else {
@@ -339,9 +351,13 @@ function decorateTemplateAndTheme() {
     });
   };
   const template = getMetadata('template');
-  if (template) addClasses(document.body, template);
+  if (template) {
+    addClasses(document.body, template);
+  }
   const theme = getMetadata('theme');
-  if (theme) addClasses(document.body, theme);
+  if (theme) {
+    addClasses(document.body, theme);
+  }
 }
 
 /**
@@ -372,13 +388,14 @@ function wrapTextNodes(block) {
 
   block.querySelectorAll(':scope > div > div').forEach((blockColumn) => {
     if (blockColumn.hasChildNodes()) {
-      const hasWrapper = !!blockColumn.firstElementChild
-        && validWrappers.some((tagName) => blockColumn.firstElementChild.tagName === tagName);
+      const hasWrapper =
+        !!blockColumn.firstElementChild &&
+        validWrappers.some((tagName) => blockColumn.firstElementChild.tagName === tagName);
       if (!hasWrapper) {
         wrap(blockColumn);
       } else if (
-        blockColumn.firstElementChild.tagName === 'PICTURE'
-        && (blockColumn.children.length > 1 || !!blockColumn.textContent.trim())
+        blockColumn.firstElementChild.tagName === 'PICTURE' &&
+        (blockColumn.children.length > 1 || !!blockColumn.textContent.trim())
       ) {
         wrap(blockColumn);
       }
@@ -402,19 +419,19 @@ function decorateButtons(element) {
           up.classList.add('button-container');
         }
         if (
-          up.childNodes.length === 1
-          && up.tagName === 'STRONG'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
+          up.childNodes.length === 1 &&
+          up.tagName === 'STRONG' &&
+          twoup.childNodes.length === 1 &&
+          twoup.tagName === 'P'
         ) {
           a.className = 'button primary';
           twoup.classList.add('button-container');
         }
         if (
-          up.childNodes.length === 1
-          && up.tagName === 'EM'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
+          up.childNodes.length === 1 &&
+          up.tagName === 'EM' &&
+          twoup.childNodes.length === 1 &&
+          twoup.tagName === 'P'
         ) {
           a.className = 'button secondary';
           twoup.classList.add('button-container');
@@ -467,7 +484,9 @@ function decorateSections(main) {
         const wrapper = document.createElement('div');
         wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
-        if (defaultContent) wrapper.classList.add('default-content-wrapper');
+        if (defaultContent) {
+          wrapper.classList.add('default-content-wrapper');
+        }
       }
       wrappers[wrappers.length - 1].append(e);
     });
@@ -615,7 +634,9 @@ function decorateBlock(block) {
     const blockWrapper = block.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
-    if (section) section.classList.add(`${shortBlockName}-container`);
+    if (section) {
+      section.classList.add(`${shortBlockName}-container`);
+    }
   }
 }
 
@@ -682,7 +703,9 @@ async function loadSection(section, loadCallback) {
       // eslint-disable-next-line no-await-in-loop
       await loadBlock(blocks[i]);
     }
-    if (loadCallback) await loadCallback(section);
+    if (loadCallback) {
+      await loadCallback(section);
+    }
     section.dataset.sectionStatus = 'loaded';
     section.style.display = null;
   }
@@ -702,6 +725,44 @@ async function loadSections(element) {
       sampleRUM.enhance();
     }
   }
+}
+
+function createOptimizedPictureUrl(
+  src,
+  alt = '',
+  eager = false,
+  breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }],
+) {
+  const picture = document.createElement('picture');
+
+  breakpoints.forEach((br) => {
+    const source = document.createElement('source');
+    if (br.media) {
+      source.setAttribute('media', br.media);
+    }
+    source.setAttribute('type', 'image/webp');
+    source.setAttribute('srcset', `${src}&w=${br.width}&auto=format&compress`);
+    picture.appendChild(source);
+  });
+
+  breakpoints.forEach((br, i) => {
+    if (i < breakpoints.length - 1) {
+      const source = document.createElement('source');
+      if (br.media) {
+        source.setAttribute('media', br.media);
+      }
+      source.setAttribute('srcset', `${src}&w=${br.width}&auto=format&compress`);
+      picture.appendChild(source);
+    } else {
+      const img = document.createElement('img');
+      img.setAttribute('loading', eager ? 'eager' : 'lazy');
+      img.setAttribute('alt', alt);
+      picture.appendChild(img);
+      img.setAttribute('src', `${src}&w=${br.width}&auto=format&compress`);
+    }
+  });
+
+  return picture;
 }
 
 init();
@@ -731,4 +792,5 @@ export {
   toClassName,
   waitForFirstImage,
   wrapTextNodes,
+  createOptimizedPictureUrl,
 };
