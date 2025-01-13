@@ -56,11 +56,8 @@ function createCard(product) {
 
 export default async function decorate(block) {
   const products = block.querySelector('a[href$=".json"]');
-  const buttonContainer = document.querySelector(
-    '.products.carousel.slide.block .button-container',
-  );
-  if (buttonContainer) {
-    buttonContainer.parentElement.remove();
+  if (products) {
+    products.parentElement.parentElement.parentElement.remove();
   }
 
   const pathname = new URL(products.href);
