@@ -114,7 +114,7 @@ export default async function decorate(block) {
       currentPosition = Math.min(currentPosition, maxPosition);
 
       const cardWidth = cards[0].offsetWidth;
-      const gap = Number(window.getComputedStyle(productsContainer).gap);
+      const gap = parseInt(window.getComputedStyle(productsContainer).gap, 10);
       const slideAmount = cardWidth + gap;
 
       const translateX = currentPosition * -slideAmount;

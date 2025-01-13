@@ -295,9 +295,9 @@ ul li {
 }
 
 .prev-button {
-  left: 0;
+  left: 10px;
 }
 
 .next-button {
-  right: 0;
+  right: 10px;
 }

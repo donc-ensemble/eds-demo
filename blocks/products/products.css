@@ -28,18 +28,6 @@
   min-width: 0;
 }
 
-@media (width>= 768px) {
-  .product-card {
-    flex: 0 0 calc((100% - 2rem) / 3.5);
-  }
-}
-
-@media (width>= 1024px) {
-  .product-card {
-    flex: 0 0 calc((100% - 4rem) / 6);
-  }
-}
-
 .product-card .bestseller-tag {
   position: absolute;
   top: 8px;
@@ -110,6 +98,7 @@
   cursor: pointer;
   font-size: 14px;
   white-space: nowrap;
+  flex: 1;
 }
 
 .product-card .add-to-bag:hover {
@@ -126,9 +115,33 @@
   .products-container {
     padding: 0 2.5rem;
   }
+}
 
+@media (width<= 540px) {
   .product-card .actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (width<= 365px) {
+  .product-card {
+    flex: 0 0 calc((100% - 2rem));
+  }
+
+  .product-card .actions {
+    flex-direction: row;
+  }
+}
+
+@media (width>= 768px) {
+  .product-card {
+    flex: 0 0 calc((100% - 2rem) / 3.5);
+  }
+}
+
+@media (width>= 1024px) {
+  .product-card {
+    flex: 0 0 calc((100% - 4rem) / 6);
   }
 }
