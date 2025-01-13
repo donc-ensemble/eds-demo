@@ -4,8 +4,8 @@ Your project's description...
 
 ## Environments
 
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--eds-demo--donc-ensemble.aem.page
+- Live: https://main--eds-demo--donc-ensemble.aem.live
 
 ## Documentation
 
