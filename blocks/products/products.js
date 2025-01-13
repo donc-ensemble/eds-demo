@@ -1,3 +1,5 @@
+import { createOptimizedPictureUrl } from '../../scripts/aem.js';
+
 function createCard(product) {
   const card = document.createElement('div');
   card.className = 'product-card';
@@ -8,9 +10,8 @@ function createCard(product) {
     card.appendChild(bestsellerTag);
   }
 
-  const image = document.createElement('img');
-  image.src = product.image;
-  card.appendChild(image);
+  const optimizedImage = createOptimizedPictureUrl(product.image, product.label);
+  card.appendChild(optimizedImage);
 
   const rating = document.createElement('div');
   rating.className = 'product-rating';
