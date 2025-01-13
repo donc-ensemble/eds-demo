@@ -6,7 +6,6 @@ export default async function decorate(block) {
   button.classList.add('shop-button');
 
   const heroParent = block.children[0];
-  console.log(heroParent)
   heroParent.classList.add('hero-brand-parent');
   const heroChild = heroParent.children[0];
   heroChild.classList.add('hero-brand-description');
