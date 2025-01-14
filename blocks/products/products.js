@@ -55,6 +55,11 @@ function createCard(product) {
 }
 
 export default async function decorate(block) {
+  const parent = block.parentElement.parentElement;
+  const h3 = document.createElement('h3');
+  parent.prepend(h3);
+  h3.className = 'new-arrivals';
+  h3.innerText = 'New Arrivals/Top Picks';
   const products = block.querySelector('a[href$=".json"]');
   if (products) {
     products.parentElement.parentElement.parentElement.remove();
