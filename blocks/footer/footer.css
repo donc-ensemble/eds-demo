@@ -3,8 +3,13 @@ footer {
   color: #f0ebe2;
 }
 
+footer .footer {
+  padding: 2rem 0;
+}
+
 footer .footer > div {
   margin: auto;
+  max-width: 1200px;
 }
 
 footer .footer p {
@@ -80,5 +85,17 @@ footer .section.active .default-content-wrapper {
   footer .section strong::after {
     content: '';
     position: unset;
+  }
+
+  footer .section:first-child {
+    padding-top: unset;
+  }
+
+  footer .section:last-child {
+    padding-bottom: unset;
+  }
+
+  footer .section:not(:last-child) {
+    border-bottom: unset;
   }
 }
