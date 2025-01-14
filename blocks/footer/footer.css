@@ -5,8 +5,6 @@ footer {
 
 footer .footer > div {
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
 }
 
 footer .footer p {
@@ -15,19 +13,72 @@ footer .footer p {
   margin-bottom: 0.5rem;
 }
 
-footer .footer p strong {
+footer .section strong {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 0;
+  margin: 0;
+  display: block;
   font-size: 16px;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
-  }
+footer .section {
+  padding: 0 1rem;
+}
+
+footer .section:not(:last-child) {
+  border-bottom: 2px solid #2d2926;
+}
+
+footer .section:first-child {
+  padding-top: 2rem;
+}
+
+footer .section:last-child {
+  padding-bottom: 2rem;
+}
+
+footer .section strong::after {
+  content: '+';
+  position: absolute;
+  right: 10px;
+  transition: transform 0.3s ease;
+}
+
+footer .section.active strong::after {
+  transform: rotate(45deg);
+}
+
+footer .default-content-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding: 0;
+}
+
+footer .section.active .default-content-wrapper {
+  max-height: 1000px;
+  transition: max-height 0.5s ease-in;
+  padding: 10px 0;
 }
 
 @media (width >= 786px) {
   footer .footer > div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  footer .default-content-wrapper {
+    max-height: unset;
+    overflow: unset;
+  }
+
+  footer .section strong {
+    position: relative;
+  }
+
+  footer .section strong::after {
+    content: '';
+    position: unset;
   }
 }
