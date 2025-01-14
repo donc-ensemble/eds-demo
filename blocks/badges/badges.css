@@ -1,3 +1,14 @@
+.badges-container {
+  padding-bottom: 2rem;
+}
+
+.badges-container .default-content-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  padding: 2rem 0;
+  font-size: 24px;
+}
+
 .badges {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -22,8 +33,68 @@
   padding-left: 0.75rem;
 }
 
+.badges.card-tips.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.badges.card-tips.block > div {
+  display: flex;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 0.25rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.badges.card-tips.block > div > div:first-child {
+  order: 1;
+  flex: 0.3;
+}
+
+.badges.card-tips.block > div > div:first-child img {
+  border-radius: 0.25rem;
+  width: 88px;
+  height: 80px;
+}
+
+.badges.card-tips.block > div > div:nth-child(2) {
+  text-align: left;
+  flex: 1;
+}
+
+.badges.card-tips.block > div > div:nth-child(2) p {
+  font-size: 16px;
+}
+
+.badges.card-tips.block > div > div:nth-child(2) h5 {
+  margin: 0;
+  font-size: 18px;
+}
+
 @media screen and (width>= 768px) {
-  .badges {
+  .badges-container .default-content-wrapper h3 {
+    padding: 2rem;
+  }
+
+  .badges,
+  .badges.card-tips.block {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .badges.card-tips.block > div {
+    display: unset;
+  }
+
+  .badges.card-tips.block > div > div:first-child img {
+    width: unset;
+    height: unset;
+  }
+}
+
+@media screen and (width>= 1024px) {
+  .badges-container .default-content-wrapper h3 {
+    font-size: 30px;
   }
 }

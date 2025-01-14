@@ -1,6 +1,6 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #484645;
+  color: #f0ebe2;
 }
 
 footer .footer > div {
@@ -11,10 +11,23 @@ footer .footer > div {
 
 footer .footer p {
   margin: 0;
+  font-size: 12px;
+  margin-bottom: 0.5rem;
+}
+
+footer .footer p strong {
+  font-size: 16px;
 }
 
 @media (width >= 900px) {
   footer .footer > div {
     padding: 40px 32px 24px;
+  }
+}
+
+@media (width >= 786px) {
+  footer .footer > div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 }

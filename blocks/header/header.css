@@ -70,6 +70,7 @@ nav .burger-menu .bar3 {
   list-style: none;
   transition: left 0.3s ease;
   z-index: 100;
+  overflow-y: auto;
 }
 
 .nav-wrapper .main-menu .default-content-wrapper.menu-active {
@@ -181,5 +182,19 @@ nav .main-menu ul li {
   nav .main-menu ul li:hover {
     color: #a64241 !important;
     background-color: #e2dfd5;
+  }
+}
+
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+@media screen and (width >= 1024px) {
+  body.menu-open {
+    overflow: initial;
+    position: static;
+    width: auto;
   }
 }

@@ -36,6 +36,7 @@ export default async function decorate(block) {
   burgerMenu.addEventListener('click', () => {
     burgerMenu.classList.toggle('change');
     mainMenu.classList.toggle('menu-active');
+    document.body.classList.toggle('menu-open');
   });
   const navMiddleContentWrapper = nav.querySelector('.nav-middle');
 
